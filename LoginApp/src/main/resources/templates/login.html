@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0">
+
+	<title>[[#{app.login}]]</title>
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container-fluid text-center">
+	<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+				<div class="collapse navbar-collapse" id="topNavbar">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link" th:href="@{?lang=en}">
+								[[#{app.login.langen}]]
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" th:href="@{?lang=zh}">
+								 [[#{app.login.langcn}]]
+							</a>
+						</li>	
+					</ul>
+				</div>
+			</nav>
+	<form th:action="@{/login}" method="post" style="max-width: 350px; margin: 0 auto">
+		<div th:if="${param.error}">
+			<p class="text-danger">[[#{app.login.danger}]]</p> 
+		</div>
+		<div th:if="${param.logout}">
+			<!--	<p class="text-warning">You have been logged out.</p> --> 
+		</div>
+		
+		<div class="border border-secondary rounded p-3">
+			<p>[[#{app.login.title}]]</p>
+			<p>
+				[[#{app.login.username}]]<input type="email" name="email" class="form-control" required />
+			</p>
+			<p>
+				[[#{app.login.password}]]<input type="password" name="password" class="form-control" required />
+			</p>
+			<p>
+				<input type="submit" value="Login" class="btn btn-primary" />
+			</p>			
+		</div>
+	</form>
+	<div>
+		<p>[[#{app.login.footer.login}]]</p>
+	</div>
+	
+</div>
+</body>
+</html>
